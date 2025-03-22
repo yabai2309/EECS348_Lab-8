@@ -1,6 +1,6 @@
-# EECS348 Lab 7
+# EECS348 Lab 8
 
-This is a template for Lab 7 with continuous integration testing set up in a
+This is a template for Lab 8 with continuous integration testing set up in a
 [GitHub Actions workflow](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions).
 When you push code to this repository, it will automatically be compiled and
 ran through a set of test cases, and the results will be reported back to you.
@@ -29,32 +29,3 @@ used for building your project for the Github Action and running the tests.
 
 Create a [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
 of this repository through GitHub then clone it locally and start working.
-
-### Starting files
-
-You begin with all source and header files you will need for the lab. For help
-working with multiple C source files and compiling them, you can refer back to
-my write-up for the [Makefiles](https://people.eecs.ku.edu/~h054w684/lab3.html)
-lab.
-
-You should keep code that handles user input for each part of the lab in each 
-part's respective `main` file, and code that implements functionality in
-`football.c` or `temperature.c`.
-
-#### Temperature
-
-Write any functions you need in `temperature.c` and call them from your main
-function in `temperature_main.c`. The function signatures for converting
-temperatures are already in `temperature.h` but you will need to add a
-signature for your characterize function.
-
-#### Football scores
-
-Write any functions you need in `football.c` and call them from
-`football_main.c`. The function signatures you need to implement are already
-given in `football.h`.
-
-#### Makefile
-
-You will also have to write your own Makefile to build your code. The file is
-included already but starts out mostly blank.
