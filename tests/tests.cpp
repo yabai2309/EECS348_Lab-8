@@ -34,7 +34,7 @@ TEST(MatrixImplementation, GetValue_Basic) {
 
     for (int i = 0; i < expected.size(); i++) {
         for (int j = 0; i < expected.size(); i++) {
-            EXPECT_EQ(matrix.get_value(i, j), expected[i][j])
+            EXPECT_EQ(matrix.get_value(i, j), expected[i][j]);
         }
     }
 }
@@ -51,7 +51,7 @@ TEST(MatrixImplementation, GetValue_Random) {
 
     for (int i = 0; i < expected.size(); i++) {
         for (int j = 0; i < expected.size(); i++) {
-            EXPECT_EQ(matrix.get_value(i, j), expected[i][j])
+            EXPECT_EQ(matrix.get_value(i, j), expected[i][j]);
         }
     }
 }
@@ -78,7 +78,7 @@ TEST(MatrixImplementation, SetValue_Basic) {
 
     for (int i = 0; i < expected.size(); i++) {
         for (int j = 0; i < expected.size(); i++) {
-            EXPECT_EQ(matrix.get_value(i, j), expected[i][j])
+            EXPECT_EQ(matrix.get_value(i, j), expected[i][j]);
         }
     }
 }
@@ -107,7 +107,7 @@ TEST(MatrixImplementation, SetValue_Random) {
 
     for (int i = 0; i < expected.size(); i++) {
         for (int j = 0; i < expected.size(); i++) {
-            EXPECT_EQ(matrix.get_value(i, j), expected[i][j])
+            EXPECT_EQ(matrix.get_value(i, j), expected[i][j]);
         }
     }
 }
@@ -151,8 +151,8 @@ TEST(MatrixImplementation, Addition_Random) {
     Matrix matrix2(initial2);
     auto result = matrix1 + matrix2;
 
-    for (int i = 0; i < initial.size(); i++) {
-        for (int j = 0; j < initial.size(); j++) {
+    for (int i = 0; i < initial1.size(); i++) {
+        for (int j = 0; j < initial1.size(); j++) {
             EXPECT_EQ(result.get_value(i, j), expected[i][j]);
         }
     }
@@ -197,8 +197,8 @@ TEST(MatrixImplementation, Multiplication_Random) {
     Matrix matrix2(initial2);
     auto result = matrix1 * matrix2;
 
-    for (int i = 0; i < initial.size(); i++) {
-        for (int j = 0; j < initial.size(); j++) {
+    for (int i = 0; i < initial1.size(); i++) {
+        for (int j = 0; j < initial1.size(); j++) {
             EXPECT_EQ(result.get_value(i, j), expected[i][j]);
         }
     }
@@ -244,7 +244,7 @@ TEST(MatrixImplementation, SwapRows_Basic) {
 
     for (int i = 0; i < initial.size(); i++) {
         for (int j = 0; j < initial.size(); j++) {
-            EXPECT_EQ(result.get_value(i, j), expected[i][j]);
+            EXPECT_EQ(matrix.get_value(i, j), expected[i][j]);
         }
     }
 }
@@ -268,7 +268,7 @@ TEST(MatrixImplementation, SwapRows_Random) {
 
     for (int i = 0; i < initial.size(); i++) {
         for (int j = 0; j < initial.size(); j++) {
-            EXPECT_EQ(result.get_value(i, j), expected[i][j]);
+            EXPECT_EQ(matrix.get_value(i, j), expected[i][j]);
         }
     }
 }
@@ -291,7 +291,7 @@ TEST(MatrixImplementation, SwapCols_Basic) {
 
     for (int i = 0; i < initial.size(); i++) {
         for (int j = 0; j < initial.size(); j++) {
-            EXPECT_EQ(result.get_value(i, j), expected[i][j]);
+            EXPECT_EQ(matrix.get_value(i, j), expected[i][j]);
         }
     }
 }
@@ -316,7 +316,7 @@ TEST(MatrixImplementation, SwapCols_Random) {
 
     for (int i = 0; i < initial.size(); i++) {
         for (int j = 0; j < initial.size(); j++) {
-            EXPECT_EQ(result.get_value(i, j), expected[i][j]);
+            EXPECT_EQ(matrix.get_value(i, j), expected[i][j]);
         }
     }
 }
