@@ -3,7 +3,7 @@
 #include "matrix.hpp"
 
 TEST(MatrixImplementation, GetSize_3) {
-    MyMatrix matrix({
+    Matrix matrix({
         { 25, 35, 45 },
         { 15, 45, 45 },
         { 80, 80, 80 },
@@ -13,7 +13,7 @@ TEST(MatrixImplementation, GetSize_3) {
 }
 
 TEST(MatrixImplementation, GetSize_4) {
-    MyMatrix matrix({
+    Matrix matrix({
         { 25, 35, 45, 28 },
         { 15, 45, 45, 34 },
         { 80, 80, 80, 11 },
@@ -30,7 +30,7 @@ TEST(MatrixImplementation, GetValue_Basic) {
         { 6, 7, 8 },
     };
 
-    MyMatrix matrix(expected);
+    Matrix matrix(expected);
 
     for (int i = 0; i < expected.size(); i++) {
         for (int j = 0; i < expected.size(); i++) {
@@ -47,7 +47,7 @@ TEST(MatrixImplementation, GetValue_Random) {
         { 4,   8,  9, 11 },
     };
 
-    MyMatrix matrix(expected);
+    Matrix matrix(expected);
 
     for (int i = 0; i < expected.size(); i++) {
         for (int j = 0; i < expected.size(); i++) {
@@ -68,7 +68,7 @@ TEST(MatrixImplementation, SetValue_Basic) {
         { 7, 8, 9 },
     };
 
-    MyMatrix matrix(initial);
+    Matrix matrix(initial);
 
     for (int i = 0; i < expected.size(); i++) {
         for (int j = 0; i < expected.size(); i++) {
@@ -97,7 +97,7 @@ TEST(MatrixImplementation, SetValue_Random) {
         { 15, 22, 37, 44},
     };
 
-    MyMatrix matrix(initial);
+    Matrix matrix(initial);
 
     for (int i = 0; i < expected.size(); i++) {
         for (int j = 0; i < expected.size(); i++) {
@@ -119,8 +119,8 @@ TEST(MatrixImplementation, Addition_Basic) {
         { 1, 1, 1 },
     };
 
-    MyMatrix matrix1(initial);
-    MyMatrix matrix2(initial);
+    Matrix matrix1(initial);
+    Matrix matrix2(initial);
     auto result = matrix1 + matrix2;
 
     for (int i = 0; i < initial.size(); i++) {
@@ -147,8 +147,8 @@ TEST(MatrixImplementation, Addition_Random) {
         { 7,  4,  11 },
     };
 
-    MyMatrix matrix1(initial1);
-    MyMatrix matrix2(initial2);
+    Matrix matrix1(initial1);
+    Matrix matrix2(initial2);
     auto result = matrix1 + matrix2;
 
     for (int i = 0; i < initial.size(); i++) {
@@ -165,8 +165,8 @@ TEST(MatrixImplementation, Multiplication_Basic) {
         { 1, 1, 1 },
     };
 
-    MyMatrix matrix1(initial);
-    MyMatrix matrix2(initial);
+    Matrix matrix1(initial);
+    Matrix matrix2(initial);
     auto result = matrix1 * matrix2;
 
     for (int i = 0; i < initial.size(); i++) {
@@ -193,8 +193,8 @@ TEST(MatrixImplementation, Multiplication_Random) {
         { 50,  36, 64  },
     };
 
-    MyMatrix matrix1(initial1);
-    MyMatrix matrix2(initial2);
+    Matrix matrix1(initial1);
+    Matrix matrix2(initial2);
     auto result = matrix1 * matrix2;
 
     for (int i = 0; i < initial.size(); i++) {
@@ -211,7 +211,7 @@ TEST(MatrixImplementation, DiagonalSumMajor) {
         { 4, 1, 6 },
     };
 
-    MyMatrix matrix(initial);
+    Matrix matrix(initial);
     EXPECT_EQ(matrix.sum_diagonal_major(), 13);
 }
 
@@ -222,7 +222,7 @@ TEST(MatrixImplementation, DiagonalSumMinor) {
         { 4, 1, 6 },
     };
 
-    MyMatrix matrix(initial);
+    Matrix matrix(initial);
     EXPECT_EQ(matrix.sum_diagonal_minor(), 19);
 }
 
@@ -239,7 +239,7 @@ TEST(MatrixImplementation, SwapRows_Basic) {
         { 3, 3, 3 },
     };
 
-    MyMatrix matrix(initial);
+    Matrix matrix(initial);
     matrix.swap_rows(0, 1);
 
     for (int i = 0; i < initial.size(); i++) {
@@ -263,7 +263,7 @@ TEST(MatrixImplementation, SwapRows_Random) {
         { 9, 7, 9, 3 }
     };
 
-    MyMatrix matrix(initial);
+    Matrix matrix(initial);
     matrix.swap_rows(0, 2);
 
     for (int i = 0; i < initial.size(); i++) {
@@ -286,7 +286,7 @@ TEST(MatrixImplementation, SwapCols_Basic) {
         { 3, 2, 1 },
     };
 
-    MyMatrix matrix(initial);
+    Matrix matrix(initial);
     matrix.swap_rows(0, 2);
 
     for (int i = 0; i < initial.size(); i++) {
@@ -311,7 +311,7 @@ TEST(MatrixImplementation, SwapCols_Random) {
         { 3, 7, 9, 9 }
     };
 
-    MyMatrix matrix(initial);
+    Matrix matrix(initial);
     matrix.swap_rows(0, 3);
 
     for (int i = 0; i < initial.size(); i++) {
@@ -322,7 +322,7 @@ TEST(MatrixImplementation, SwapCols_Random) {
 }
 
 TEST(MatrixImplementation, OutOfBoundsThrowsException) {
-    MyMatrix matrix({
+    Matrix matrix({
         { 25, 35, 45 },
         { 15, 45, 45 },
         { 80, 80, 80 },
