@@ -1,29 +1,24 @@
-#include <cassert>
 #include <gtest/gtest.h>
 
 #include "matrix.hpp"
 
 TEST(MatrixImplementation, GetSize_3) {
-    std::vector<std::vector<int>> expected = {
+    MyMatrix matrix({
         { 25, 35, 45 },
         { 15, 45, 45 },
         { 80, 80, 80 },
-    };
-
-    MyMatrix matrix(expected);
+    });
 
     EXPECT_EQ(matrix.get_size(), 3);
 }
 
 TEST(MatrixImplementation, GetSize_4) {
-    std::vector<std::vector<int>> expected = {
+    MyMatrix matrix({
         { 25, 35, 45, 28 },
         { 15, 45, 45, 34 },
         { 80, 80, 80, 11 },
         { 4,   8,  9, 11 },
-    };
-
-    MyMatrix matrix(expected);
+    });
 
     EXPECT_EQ(matrix.get_size(), 4);
 }
@@ -324,4 +319,14 @@ TEST(MatrixImplementation, SwapCols_Random) {
             EXPECT_EQ(result.get_value(i, j), expected[i][j]);
         }
     }
+}
+
+TEST(MatrixImplementation, OutOfBoundsThrowsException) {
+    MyMatrix matrix({
+        { 25, 35, 45 },
+        { 15, 45, 45 },
+        { 80, 80, 80 },
+    });
+
+    EXPECT_THROW(matrix.get_value(4, 4), std::out_of_range);
 }
