@@ -287,7 +287,7 @@ TEST(MatrixImplementation, SwapCols_Basic) {
     };
 
     Matrix matrix(initial);
-    matrix.swap_rows(0, 2);
+    matrix.swap_cols(0, 2);
 
     for (int i = 0; i < initial.size(); i++) {
         for (int j = 0; j < initial.size(); j++) {
@@ -312,7 +312,7 @@ TEST(MatrixImplementation, SwapCols_Random) {
     };
 
     Matrix matrix(initial);
-    matrix.swap_rows(0, 3);
+    matrix.swap_cols(0, 3);
 
     for (int i = 0; i < initial.size(); i++) {
         for (int j = 0; j < initial.size(); j++) {
