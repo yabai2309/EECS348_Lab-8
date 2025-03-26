@@ -28,4 +28,6 @@ used for building your project for the Github Action and running the tests.
 ## To begin
 
 Create a [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
-of this repository through GitHub then clone it locally and start working.
+of this repository through GitHub then clone it locally and start working. To
+enable the Github Action workflow for googletest, you will have to go to the
+actions tab and click enable actions in your fork.
