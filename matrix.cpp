@@ -64,14 +64,21 @@ int Matrix::get_size() const {
 }
 
 // Sum of the primary (major) diagonal.
-int Matrix::sum_diagonal() const {
+int Matrix::sum_diagonal_major() const {
     int sum = 0;
-    int size = get_size();
-    for(int i = 0; i<size; i++){
-        sum += data[i][i] + data[i][size-1-i];
+    std::size_t N = get_size();
+    for (std::size_t i = 0; i < N; i++) {
+        sum += data[i][i];
     }
-    if (size % 2 == 1){
-        sum -= data[size-1/2][size-1/2];
+    return sum;
+}
+
+// Sum of the secondary (minor) diagonal.
+int Matrix::sum_diagonal_minor() const {
+    int sum = 0;
+    std::size_t N = get_size();
+    for (std::size_t i = 0; i < N; i++) {
+        sum += data[i][N - 1 - i];
     }
     return sum;
 }

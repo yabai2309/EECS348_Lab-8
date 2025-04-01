@@ -77,15 +77,23 @@ int main() {
             }
             case 3: {
                 int matrix_choice;
-                int num;
+                int sumBoth;
                 cout << "Choose between matrix_1 (1) or matrix(2). Type in the number 1 or 2: " << endl;
                 cin >> matrix_choice;
                 if (matrix_choice == 1){
-                    num = matrix1.sum_diagonal();
+                    sumBoth = matrix1.sum_diagonal_major() + matrix1.sum_diagonal_minor();
+                     if (size % 2 == 1) {
+                    int center = matrix1.get_value(size / 2, size / 2);
+                    sumBoth -= center;
+                    }
                 } else {
-                    num = matrix2.sum_diagonal();
+                    sumBoth = matrix2.sum_diagonal_major() + matrix1.sum_diagonal_minor();
+                     if (size % 2 == 1) {
+                    int center = matrix2.get_value(size / 2, size / 2);
+                    sumBoth -= center;
+                    }
                 }
-                cout << "Diagonal sum is: " << num << endl;
+                cout << "Diagonal sum is: " << sumBoth << endl;
                 break;
             }
             case 4: {
