@@ -24,7 +24,7 @@ Matrix::Matrix(std::vector<std::vector<int>> nums) : data(nums) {}//Copy constru
 
 // Overloaded addition operator
 Matrix Matrix::operator+(const Matrix &rhs) const {
-    std::size_t N = get_size();//Get the size of the matrix
+    size_t N = get_size();//Get the size of the matrix
     if (rhs.get_size() != N) {//If the target size is not the same
         throw std::invalid_argument("Matrix sizes do not match");//Print out the error to user
     }
@@ -39,13 +39,13 @@ Matrix Matrix::operator+(const Matrix &rhs) const {
 
 // Overloaded multiplication operator
 Matrix Matrix::operator*(const Matrix &rhs) const {
-    std::size_t N = get_size();//Get the size of the matrix
+    size_t N = get_size();//Get the size of the matrix
     if (rhs.get_size() != N) {//If the target size is not the same
         throw std::invalid_argument("Matrix sizes do not match");//Print out the error to user
     }
     Matrix result(N);//Create a new matrix in the same size as the current one
-    for (std::size_t i = 0; i < N; i++) {//Loop through each row
-        for (std::size_t j = 0; j < N; j++) {//Loop through each column
+    for (size_t i = 0; i < N; i++) {//Loop through each row
+        for (size_t j = 0; j < N; j++) {//Loop through each column
             int sum = 0;//Create a place holder to save the value of one position
             for (std::size_t k = 0; k < N; k++) {//Loop through that column again to calculate the 1 part of the actual value
                 sum += data[i][k] * rhs.data[k][j];//Calculate the actual value of that position
@@ -57,7 +57,7 @@ Matrix Matrix::operator*(const Matrix &rhs) const {
 }
 
 // Set a specific value in the matrix
-void Matrix::set_value(std::size_t i, std::size_t j, int n) {
+void Matrix::set_value(size_t i, size_t j, int n) {
     if (i >= get_size() || j >= get_size()) {//Because it's 0-indexed, so chekc if i and j is larger or equal to the size
         throw std::out_of_range("Index out of range in set_value.");//Throw an error 
     }
@@ -65,7 +65,7 @@ void Matrix::set_value(std::size_t i, std::size_t j, int n) {
 }
 
 // Get a specific value from the matrix
-int Matrix::get_value(std::size_t i, std::size_t j) const {
+int Matrix::get_value(size_t i, size_t j) const {
     if (i >= get_size() || j >= get_size()) {//Because it's 0-indexed, so chekc if i and j is larger or equal to the size
         throw std::out_of_range("Index out of range in get_value.");//Throw an error 
     }
@@ -73,7 +73,7 @@ int Matrix::get_value(std::size_t i, std::size_t j) const {
 }
 
 // Return the size (number of rows/columns) of the square matrix
-int Matrix::get_size() const {
+size_t Matrix::get_size() const {
     return data.size();//return the matrix size
 }
 

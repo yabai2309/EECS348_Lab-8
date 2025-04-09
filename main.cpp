@@ -40,7 +40,7 @@ vector<vector<int>> readMatrix(istream &file, int size) {
 //Helper function to print out the menu for user
 void printMenu(){
     cout << endl;
-    cout << "Choose what do you want to do:" << endl;
+    cout << "Choose what you want to do:" << endl;
     cout << "1) Add two matrix together" <<endl;
     cout << "2) Multiply two matrix together" <<endl;
     cout << "3) Calculate sum of the diagonal" <<endl;
@@ -76,12 +76,18 @@ int main() {
     // Create Matrix objects from the read data
     Matrix matrix1(matData1);
     Matrix matrix2(matData2); 
-    
+   
+    cout << "Your first matrix is: " << endl;
+    matrix1.print_matrix();
+    cout << endl;
+    cout << "Your second matrix is: " << endl;
+    matrix2.print_matrix();
     //Handle user choices from the command line menu
     int choice = 0;//Create a placeholder for user choice
     printMenu();//Print out the menu to the user
     cin >> choice;//Listen to user input
     while(choice != 7){//Create a loop to keep asking user until user want to quit
+        try{
         switch(choice){//Switch-case to navigate the choices
             case 1: {//Handle the add function
                 Matrix matrix3 = matrix1+matrix2;//Add 2 matrix together
@@ -95,22 +101,30 @@ int main() {
             }
             case 3: {//Handle diagonal sum function
                 int matrix_choice;//Create a placeholder for user to choose the matrix they want
-                int sumBoth;//Create a placeholder for the return value
+                int sumBoth, majorSum, minorSum;//Create a placeholder for the return value
                 cout << "Choose between matrix_1 (1) or matrix(2). Type in the number 1 or 2: ";
                 cin >> matrix_choice;//Prompt user and get the matrix choice
                 if (matrix_choice == 1){//If they choose matrix 1 
+                    majorSum = matrix1.sum_diagonal_major();
+                    minorSum = matrix1.sum_diagonal_minor();
                     sumBoth = matrix1.sum_diagonal_major() + matrix1.sum_diagonal_minor();//Calculate the diagonal sum
                      if (size % 2 == 1) {//For the case it's odd number
                     int center = matrix1.get_value(size / 2, size / 2);//Get the middle value
                     sumBoth -= center;//Final value would minus that middle value because it's being calculated twice
                     }
-                } else {//If they choose matrix 2
-                    sumBoth = matrix2.sum_diagonal_major() + matrix1.sum_diagonal_minor();//Calculate the diagonal sum
+                } else if (matrix_choice ==2 ){//If they choose matrix 2
+                    majorSum = matrix2.sum_diagonal_major();
+                    minorSum = matrix2.sum_diagonal_minor();
+                    sumBoth = matrix2.sum_diagonal_major() + matrix2.sum_diagonal_minor();//Calculate the diagonal sum
                      if (size % 2 == 1) {//For the case it's odd number
                     int center = matrix2.get_value(size / 2, size / 2);//Get the middle value
                     sumBoth -= center;//Final value would minus that middle value because it's being calculated twice
                     }
+                } else { 
+                    throw out_of_range("Invalid choice. Please try again!");
                 }
+                cout << "Major diagonal sum is:" << majorSum << endl;
+                cout << "Minor diagonal sum is: " << minorSum << endl;
                 cout << "Diagonal sum is: " << sumBoth << endl;//Print out the sum to the user
                 break;//Jump out of the switch-case block
             }
@@ -119,6 +133,9 @@ int main() {
                 int row_from, row_to;//Create a variable to save the 2 row from user
                 cout << "Choose between matrix_1 (1) or matrix(2). Type in the number 1 or 2: " ;
                 cin >> matrix_choice;//Prompt user and get the matrix choice
+                if (matrix_choice > 2 || matrix_choice < 0){
+                    throw out_of_range("Invalid choice of the matrix. Please try again!");
+                }
                 cout << "Enter the first row you want to swap (0-indexed): " ;
                 cin >> row_from;//Prompt user for row 1 choice 
                 cout << "Enter the second row you want to swap (0-indexed): " ;
@@ -131,7 +148,7 @@ int main() {
                     matrix2.swap_rows(row_from, row_to);//Swap the row
                     cout << "Swapped! Here is your output:" << endl;
                     matrix2.print_matrix();//Print out that result matrix to user
-                }
+                } 
                 break;//Jump out of the switch-case block
             }
             case 5: {//Handle swap column function
@@ -139,15 +156,18 @@ int main() {
                 int col_from, col_to;//Create a variable to save the 2 col from user
                 cout << "Choose between matrix_1 (1) or matrix(2). Type in the number 1 or 2: " ;
                 cin >> matrix_choice;//Prompt user and get the matrix choice
-                cout << "Enter the first row you want to swap (0-indexed): " ;
+                if (matrix_choice > 2 || matrix_choice < 0){
+                    throw out_of_range("Invalid choice of the matrix. Please try again!");
+                }
+                cout << "Enter the first column you want to swap (0-indexed): " ;
                 cin >> col_from;//Prompt user for column 1 choice 
-                cout << "Enter the second row you want to swap (0-indexed): ";
+                cout << "Enter the second column you want to swap (0-indexed): ";
                 cin >> col_to;//Prompt user for column 2 choice 
                 if (matrix_choice == 1){//If they choose matrix 1
                     matrix1.swap_cols(col_from, col_to);//Swap the column
                     cout << "Swapped! Here is your output:" << endl;
                     matrix1.print_matrix();//Print out that result matrix to user
-                } else {//If they choose matrix 2
+                } else if (matrix_choice == 2) {//If they choose matrix 2
                     matrix2.swap_cols(col_from, col_to);//Swap the column
                     cout << "Swapped! Here is your output:" << endl;
                     matrix2.print_matrix();//Print out that result matrix to user
@@ -159,6 +179,9 @@ int main() {
                 int num, col, row;//Create a variable to save value of column, row and the target value after change
                 cout << "Choose between matrix_1 (1) or matrix(2). Type in the number 1 or 2: " ;
                 cin >> matrix_choice;//Prompt user and get the matrix choice
+                if (matrix_choice > 2 || matrix_choice < 0){
+                    throw out_of_range("Invalid choice of the matrix. Please try again!");
+                }
                 cout << "Enter the row you want to update: " ;
                 cin >> row;//Prompt user for the row
                 cout << "Enter the column you want to update: ";
@@ -169,13 +192,18 @@ int main() {
                     matrix1.set_value(row, col, num);//Change the value at that location
                     cout << "Updated! Here is your output:" << endl;
                     matrix1.print_matrix();//Print out that result matrix to user
-                } else {//If they choose matrix 2
+                } else if (matrix_choice == 2){//If they choose matrix 2
                     matrix2.set_value(row, col,num);//Change the value at that location
                     cout << "Updated! Here is your output:" << endl;
                     matrix2.print_matrix();//Print out that result matrix to user
                 }
                 break;//Jump out of the switch-case block
             }
+        }}
+        catch (const std::exception& ex) {//If there is exception
+            //std::cerr << "Exception: " << ex.what() << std::endl;//Print it out to user
+            cout << "Invalid input. Please try again!" <<endl;
+            continue;
         }
         printMenu();//Print menu again for user to continue choosing
         cin >> choice;//Overwrite the choice variable
